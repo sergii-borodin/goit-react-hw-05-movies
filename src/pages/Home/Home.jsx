@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as ApiService from '../../ApiService';
+import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 const Home = props => {
@@ -23,7 +25,7 @@ const Home = props => {
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
-            <p>{movie.title}</p>
+            <Link to="movie/:movieId">{movie.title}</Link>
           </li>
         ))}
       </ul>
