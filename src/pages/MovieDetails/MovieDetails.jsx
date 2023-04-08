@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import * as ApiService from '../../ApiService';
+import { useNavigate } from 'react-router-dom';
 
 import { Wrapper, Description, Title } from './MovieDetails.styled';
 
 const MovieDetails = props => {
   const [movieInfo, setMovieInfo] = useState({});
   const { movieId } = useParams();
+  const navigate = useNavigate();
+
   console.log(movieId);
   useEffect(() => {
     const getMovieById = async movieId => {
@@ -27,6 +30,9 @@ const MovieDetails = props => {
 
   return (
     <>
+      <button type="button" onClick={() => navigate('/')}>
+        go back
+      </button>
       <Wrapper>
         <img
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}

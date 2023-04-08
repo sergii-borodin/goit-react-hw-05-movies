@@ -1,10 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import * as ApiService from '../../ApiService';
 
 const Movies = props => {
-  return <div>Movies</div>;
-};
+  const [movieName, setMovieName] = useState('');
+  useEffect(() => {
+    const getMoviesByName = async movieName => {
+      try {
+        const data = await ApiService.fetchMoviesByName(movieName);
+        console.log('data', data);
+      } catch (error) {}
+    };
+  }, [movieName]);
 
-Movies.propTypes = {};
+  return (
+    <>
+      <label>
+        Search movie
+        <input type="text" />
+      </label>
+    </>
+  );
+};
 
 export default Movies;
