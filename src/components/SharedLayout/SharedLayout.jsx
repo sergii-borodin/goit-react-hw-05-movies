@@ -5,10 +5,9 @@ import {
   PageLink,
   NavigationLink,
 } from './SharedLayout.styled';
-import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
 
-const SharedLayout = ({ children }) => {
+const SharedLayout = () => {
   return (
     <Container>
       <Header>
@@ -28,7 +27,5 @@ const SharedLayout = ({ children }) => {
     </Container>
   );
 };
-
-SharedLayout.propTypes = {};
 
 export default SharedLayout;
