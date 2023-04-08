@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import * as ApiService from '../../ApiService';
 
 import { Wrapper, Description, Title } from './MovieDetails.styled';
@@ -19,27 +19,39 @@ const MovieDetails = props => {
       }
     };
     getMovieById(movieId);
-  }, [movieId, movieInfo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movieId]);
 
   const { title, vote_average, overview, genres, poster_path, tagline } =
     movieInfo;
 
   return (
-    <Wrapper>
-      <img
-        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-        width="300"
-        alt={tagline}
-      />
-      <Description>
-        <Title>{title}</Title>
-        <p> User Score: {(vote_average * 10).toFixed()} %</p>
-        <h2>Overview</h2>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <p>{genres && genres.map(genre => genre.name + ' ')}</p>
-      </Description>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <img
+          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          width="300"
+          alt={tagline}
+        />
+        <Description>
+          <Title>{title}</Title>
+          <p> User Score: {(vote_average * 10).toFixed()} %</p>
+          <h2>Overview</h2>
+          <p>{overview}</p>
+          <h3>Genres</h3>
+          <p>{genres && genres.map(genre => genre.name + ' ')}</p>
+        </Description>
+      </Wrapper>
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
+    </>
   );
 };
 
