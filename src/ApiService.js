@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// working example
-// https://api.themoviedb.org/3/trending/all/week?api_key=9fbe85233379d275904e898da5aa337c
-
 const API_KEY = '9fbe85233379d275904e898da5aa337c';
 const query = 'movie/week';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -22,6 +19,13 @@ export const fetchMovieById = async movieId => {
 export const fetchCastInfoByMovieId = async movieId => {
   const response = await axios.get(
     `movie/${movieId}/credits?api_key=${API_KEY}`
+  );
+  return response.data;
+};
+
+export const fetchReviewsInfoByMovieId = async movieId => {
+  const response = await axios.get(
+    `movie/${movieId}/reviews?api_key=${API_KEY}`
   );
 
   return response.data;
