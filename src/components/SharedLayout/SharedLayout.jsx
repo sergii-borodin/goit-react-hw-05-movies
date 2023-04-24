@@ -1,4 +1,4 @@
-import React from 'react';
+import { Suspense } from 'react';
 import {
   Container,
   Header,
@@ -23,7 +23,9 @@ const SharedLayout = () => {
           </ul>
         </nav>
       </Header>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

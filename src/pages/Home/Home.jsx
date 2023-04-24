@@ -10,7 +10,6 @@ const Home = props => {
       try {
         const { results } = await ApiService.fetchTrendingMovies();
         setMovies(results);
-        console.log(results);
       } catch (error) {
         console.log(error);
       }

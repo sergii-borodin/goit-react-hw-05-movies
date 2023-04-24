@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import * as ApiService from '../../ApiService';
-import { useNavigate } from 'react-router-dom';
 
 import { Wrapper, Description, Title } from './MovieDetails.styled';
 
 const MovieDetails = props => {
   const [movieInfo, setMovieInfo] = useState({});
   const { movieId } = useParams();
-  const navigate = useNavigate();
+  const location = useLocation();
+  const goBackRef = useRef(location.state?.from ?? '/movies');
 
   console.log(movieId);
   useEffect(() => {
@@ -30,9 +30,7 @@ const MovieDetails = props => {
 
   return (
     <>
-      <button type="button" onClick={() => navigate('/')}>
-        go back
-      </button>
+      <Link to={goBackRef.current}>go back</Link>
       <Wrapper>
         <img
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
