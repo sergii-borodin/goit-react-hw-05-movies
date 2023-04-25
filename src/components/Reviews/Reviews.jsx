@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { ReviewsList, ReviewItem } from './Reviews.styled';
 
-import PropTypes from 'prop-types';
-
 const Reviews = props => {
   const [reviewsInfo, setReviewsInfo] = useState([]);
   const { movieId } = useParams();
@@ -42,7 +40,5 @@ const Reviews = props => {
     </ReviewsList>
   );
 };
-
-Reviews.propTypes = {};
 
 export default Reviews;
